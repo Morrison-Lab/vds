@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-19 01:52:26 (PDT)
+Last modified: 2026-10-19 02:07:24 (PDT)
 
 ## 0.1 Why a scatterplot fails
 
@@ -15,7 +15,7 @@ The examples use the Western Collaborative Group Study, which followed 3154 midd
 ## R
 
 ``` r
-wcgs <- read.csv("data/wcgs.csv")
+wcgs <- readr::read_csv("data/wcgs.csv", show_col_types = FALSE)
 fit_bmi <- lm(chd ~ bmi, data = wcgs)
 ```
 
@@ -44,7 +44,7 @@ fitted_bmi = intercept + slope * wcgs["bmi"]
 >   geom_rug(data = subset(wcgs, chd == 0), sides = "b", alpha = 0.3) +
 >   geom_rug(data = subset(wcgs, chd == 1), sides = "t", alpha = 0.3) +
 >   geom_hline(yintercept = c(0, 1), linetype = "dashed") +
->   geom_smooth(method = "lm", se = FALSE) +
+>   geom_line(aes(y = fitted(fit_bmi))) +
 >   labs(x = "Body mass index (bmi)", y = "Fitted chd")
 > ```
 >
@@ -86,8 +86,8 @@ fitted_bmi = intercept + slope * wcgs["bmi"]
 > bars <- function(data, chd_value) {
 >   counts <- hist(data$bmi[data$chd == chd_value], breaks = breaks,
 >                  plot = FALSE)$counts
->   data.frame(xmin = head(breaks, -1), xmax = tail(breaks, -1),
->              height = 0.3 * counts / max(counts))
+>   tibble::tibble(xmin = head(breaks, -1), xmax = tail(breaks, -1),
+>                  height = 0.3 * counts / max(counts))
 > }
 > bars0 <- bars(wcgs, 0)
 > bars1 <- bars(wcgs, 1)
@@ -98,7 +98,7 @@ fitted_bmi = intercept + slope * wcgs["bmi"]
 >   geom_rect(data = bars1,
 >             aes(xmin = xmin, xmax = xmax, ymin = 1 - height, ymax = 1),
 >             inherit.aes = FALSE, alpha = 0.4) +
->   geom_smooth(method = "lm", se = FALSE) +
+>   geom_line(aes(y = fitted(fit_bmi))) +
 >   labs(x = "Body mass index (bmi)", y = "Fitted chd")
 > ```
 >
@@ -119,7 +119,7 @@ fitted_bmi = intercept + slope * wcgs["bmi"]
 > #> <BarContainer object of 28 artists>
 > #> <BarContainer object of 28 artists>
 > ax.plot(wcgs["bmi"], fitted_bmi)
-> #> [<matplotlib.lines.Line2D object at 0x7f6135622210>]
+> #> [<matplotlib.lines.Line2D object at 0x7f74e9a96210>]
 > ax.set_xlabel("Body mass index (bmi)")
 > #> Text(0.5, 0, 'Body mass index (bmi)')
 > ax.set_ylabel("Fitted chd")

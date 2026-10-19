@@ -343,7 +343,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-19 01:52:26 (PDT)</p>
+  <p class="date">Last modified: 2026-10-19 02:07:24 (PDT)</p>
 </section>
 <section id="why-a-scatterplot-fails" class="slide level2" data-number="0.1">
 <h2><span class="header-section-number">0.1</span> Why a scatterplot fails</h2>
@@ -357,7 +357,7 @@
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>wcgs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/wcgs.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>wcgs <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/wcgs.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-2"><a aria-label="2"></a>fit_bmi <span class="ot">&lt;-</span> <span class="fu">lm</span>(chd <span class="sc">~</span> bmi, <span class="at">data =</span> wcgs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -391,7 +391,7 @@
 <span id="cb3-3"><a aria-label="3"></a>  <span class="fu">geom_rug</span>(<span class="at">data =</span> <span class="fu">subset</span>(wcgs, chd <span class="sc">==</span> <span class="dv">0</span>), <span class="at">sides =</span> <span class="st">"b"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb3-4"><a aria-label="4"></a>  <span class="fu">geom_rug</span>(<span class="at">data =</span> <span class="fu">subset</span>(wcgs, chd <span class="sc">==</span> <span class="dv">1</span>), <span class="at">sides =</span> <span class="st">"t"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb3-5"><a aria-label="5"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a aria-label="6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a aria-label="6"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fitted</span>(fit_bmi))) <span class="sc">+</span></span>
 <span id="cb3-7"><a aria-label="7"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass index (bmi)"</span>, <span class="at">y =</span> <span class="st">"Fitted chd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -447,8 +447,8 @@
 <span id="cb5-2"><a aria-label="2"></a>bars <span class="ot">&lt;-</span> <span class="cf">function</span>(data, chd_value) {</span>
 <span id="cb5-3"><a aria-label="3"></a>  counts <span class="ot">&lt;-</span> <span class="fu">hist</span>(data<span class="sc">$</span>bmi[data<span class="sc">$</span>chd <span class="sc">==</span> chd_value], <span class="at">breaks =</span> breaks,</span>
 <span id="cb5-4"><a aria-label="4"></a>                 <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span>
-<span id="cb5-5"><a aria-label="5"></a>  <span class="fu">data.frame</span>(<span class="at">xmin =</span> <span class="fu">head</span>(breaks, <span class="sc">-</span><span class="dv">1</span>), <span class="at">xmax =</span> <span class="fu">tail</span>(breaks, <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb5-6"><a aria-label="6"></a>             <span class="at">height =</span> <span class="fl">0.3</span> <span class="sc">*</span> counts <span class="sc">/</span> <span class="fu">max</span>(counts))</span>
+<span id="cb5-5"><a aria-label="5"></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">xmin =</span> <span class="fu">head</span>(breaks, <span class="sc">-</span><span class="dv">1</span>), <span class="at">xmax =</span> <span class="fu">tail</span>(breaks, <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb5-6"><a aria-label="6"></a>                 <span class="at">height =</span> <span class="fl">0.3</span> <span class="sc">*</span> counts <span class="sc">/</span> <span class="fu">max</span>(counts))</span>
 <span id="cb5-7"><a aria-label="7"></a>}</span>
 <span id="cb5-8"><a aria-label="8"></a>bars0 <span class="ot">&lt;-</span> <span class="fu">bars</span>(wcgs, <span class="dv">0</span>)</span>
 <span id="cb5-9"><a aria-label="9"></a>bars1 <span class="ot">&lt;-</span> <span class="fu">bars</span>(wcgs, <span class="dv">1</span>)</span>
@@ -459,7 +459,7 @@
 <span id="cb5-14"><a aria-label="14"></a>  <span class="fu">geom_rect</span>(<span class="at">data =</span> bars1,</span>
 <span id="cb5-15"><a aria-label="15"></a>            <span class="fu">aes</span>(<span class="at">xmin =</span> xmin, <span class="at">xmax =</span> xmax, <span class="at">ymin =</span> <span class="dv">1</span> <span class="sc">-</span> height, <span class="at">ymax =</span> <span class="dv">1</span>),</span>
 <span id="cb5-16"><a aria-label="16"></a>            <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb5-17"><a aria-label="17"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb5-17"><a aria-label="17"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fitted</span>(fit_bmi))) <span class="sc">+</span></span>
 <span id="cb5-18"><a aria-label="18"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass index (bmi)"</span>, <span class="at">y =</span> <span class="st">"Fitted chd"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -483,7 +483,7 @@
 <span id="cb6-8"><a aria-label="8"></a><span class="co">#&gt; &lt;BarContainer object of 28 artists&gt;</span></span>
 <span id="cb6-9"><a aria-label="9"></a><span class="co">#&gt; &lt;BarContainer object of 28 artists&gt;</span></span>
 <span id="cb6-10"><a aria-label="10"></a>ax.plot(wcgs[<span class="st">"bmi"</span>], fitted_bmi)</span>
-<span id="cb6-11"><a aria-label="11"></a><span class="co">#&gt; [&lt;matplotlib.lines.Line2D object at 0x7f6135622210&gt;]</span></span>
+<span id="cb6-11"><a aria-label="11"></a><span class="co">#&gt; [&lt;matplotlib.lines.Line2D object at 0x7f74e9a96210&gt;]</span></span>
 <span id="cb6-12"><a aria-label="12"></a>ax.set_xlabel(<span class="st">"Body mass index (bmi)"</span>)</span>
 <span id="cb6-13"><a aria-label="13"></a><span class="co">#&gt; Text(0.5, 0, 'Body mass index (bmi)')</span></span>
 <span id="cb6-14"><a aria-label="14"></a>ax.set_ylabel(<span class="st">"Fitted chd"</span>)</span>
