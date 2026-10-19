@@ -12,8 +12,14 @@ Transparent ticks darken where many observations share nearly the same `bmi`.
 
 ```{r}
 #| code-fold: false
-#| fig-cap: "Fitted line of `chd` on `bmi` in the WCGS data, with a rug of the men with `chd` = 1 along the top and `chd` = 0 along the bottom."
-#| fig-alt: "A straight line rising gently from near 0 at low body mass index to about 0.18 at the highest, drawn over dense tick marks along the bottom edge for men without coronary heart disease and sparse tick marks along the top edge for men with it. The line dips just below 0 at the far left."
+#| fig-cap: >-
+#|   Fitted line of `chd` on `bmi` in the WCGS data, with a rug of the men
+#|   with `chd` = 1 along the top and `chd` = 0 along the bottom.
+#| fig-alt: >-
+#|   A straight line rising gently from near 0 at low body mass index to
+#|   about 0.18 at the highest, drawn over dense tick marks along the bottom
+#|   edge for men without coronary heart disease and sparse tick marks along
+#|   the top edge for men with it. The line dips just below 0 at the far left.
 library(ggplot2)
 ggplot(wcgs, aes(bmi, chd)) +
   geom_rug(data = subset(wcgs, chd == 0), sides = "b", alpha = 0.3) +
