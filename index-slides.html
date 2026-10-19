@@ -54,7 +54,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-3a7eae3b872f08785a56513611f0329a.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-e8c4c5617c7b7a155f41c7848e1c3da6.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -148,19 +148,19 @@
     }
   </style>
   <!--
-    Colour-theme dropdown for the qwt revealjs format: Light, Off-white,
+    Colour-theme dropdown for the vds revealjs format: Light, Off-white,
     Parchment, Dark. Pulled into every slide deck via the `include-in-header`
     entry in the `revealjs:` block of `_quarto-website.yml`. Pairs with
     `styles-reveal.scss`, which defines the palette CSS variables; the select
     reads those vars so it stays legible in every palette. Light is the
     default variable set, Off-white and Parchment are a data-palette attribute
-    on <html>, and Dark is the body.qwt-dark class. The choice is saved under
+    on <html>, and Dark is the body.vds-dark class. The choice is saved under
     "mln-theme", the key the website's theme dropdown (theme-picker.html) uses,
     so it carries across the site and the decks. First-time visitors get
     Dark if their system prefers it, and Off-white otherwise.
   -->
   <style>
-    #qwt-theme-select {
+    #vds-theme-select {
       position: fixed;
       bottom: 8px;
       left: 8px;
@@ -169,30 +169,30 @@
          corners so they don't overlap. Keep them aligned if you bump this. */
       z-index: 31;
       padding: 2px 4px;
-      border: 1px solid var(--qwt-border, rgba(0, 0, 0, 0.2));
+      border: 1px solid var(--vds-border, rgba(0, 0, 0, 0.2));
       border-radius: 4px;
-      background: var(--qwt-chip-bg, rgba(255, 255, 255, 0.8));
-      color: var(--qwt-fg, #000);
+      background: var(--vds-chip-bg, rgba(255, 255, 255, 0.8));
+      color: var(--vds-fg, #000);
       cursor: pointer;
       font: 12px sans-serif;
       opacity: 0.7;
     }
-    #qwt-theme-select:hover,
-    #qwt-theme-select:focus-visible {
+    #vds-theme-select:hover,
+    #vds-theme-select:focus-visible {
       opacity: 1;
-      border-color: var(--qwt-fg, rgba(0, 0, 0, 0.4));
+      border-color: var(--vds-fg, rgba(0, 0, 0, 0.4));
     }
-    #qwt-theme-select:focus-visible {
-      outline: 2px solid var(--qwt-link, #2a76dd);
+    #vds-theme-select:focus-visible {
+      outline: 2px solid var(--vds-link, #2a76dd);
       outline-offset: 2px;
     }
-    @media print { #qwt-theme-select { display: none; } }
+    @media print { #vds-theme-select { display: none; } }
   </style>
   <script>
   (function () {
     "use strict";
     var KEY = "mln-theme";
-    var DARK_CLASS = "qwt-dark";
+    var DARK_CLASS = "vds-dark";
     var OPTIONS = [["light", "Light"], ["offwhite", "Off-white"], ["parchment", "Parchment"], ["dark", "Dark"]];
     var root = document.documentElement;
 
@@ -227,10 +227,10 @@
     applyTheme(start); // set the palette before first paint
 
     function init() {
-      if (document.getElementById("qwt-theme-select")) return;
+      if (document.getElementById("vds-theme-select")) return;
       applyTheme(start);
       var sel = document.createElement("select");
-      sel.id = "qwt-theme-select";
+      sel.id = "vds-theme-select";
       sel.setAttribute("aria-label", "Colour theme");
       OPTIONS.forEach(function (o) {
         var opt = document.createElement("option");
@@ -264,7 +264,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-19 03:20:06 (PDT)</p>
+  <p class="date">Last modified: 2026-10-19 03:24:45 (PDT)</p>
 </section>
 <section>
 <section id="welcome" class="title-slide slide level1 unnumbered center">
@@ -392,18 +392,18 @@ window.addEventListener("load", alignEquationAnchorsWithDefault);
     "  line-height: 1;",
     "}",
     "#revealjs-html-link a {",
-    "  color: var(--qwt-muted, rgba(0, 0, 0, 0.5));",
+    "  color: var(--vds-muted, rgba(0, 0, 0, 0.5));",
     "  text-decoration: none;",
-    "  border: 1px solid var(--qwt-border, rgba(0, 0, 0, 0.2));",
+    "  border: 1px solid var(--vds-border, rgba(0, 0, 0, 0.2));",
     "  padding: 4px 8px;",
     "  border-radius: 4px;",
-    "  background: var(--qwt-chip-bg, rgba(255, 255, 255, 0.8));",
+    "  background: var(--vds-chip-bg, rgba(255, 255, 255, 0.8));",
     "  transition: color 0.15s, background 0.15s, border-color 0.15s;",
     "}",
     "#revealjs-html-link a:hover {",
-    "  color: var(--qwt-fg, rgba(0, 0, 0, 0.9));",
-    "  background: var(--qwt-chip-bg-hover, rgba(255, 255, 255, 0.98));",
-    "  border-color: var(--qwt-fg, rgba(0, 0, 0, 0.4));",
+    "  color: var(--vds-fg, rgba(0, 0, 0, 0.9));",
+    "  background: var(--vds-chip-bg-hover, rgba(255, 255, 255, 0.98));",
+    "  border-color: var(--vds-fg, rgba(0, 0, 0, 0.4));",
     "}"
   ].join("\n");
 
