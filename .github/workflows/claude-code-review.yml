@@ -5,7 +5,7 @@
 # line, and already skips drafts, Dependabot bumps, fork PRs, and PRs that
 # edit this workflow file itself (the action can't review its own diff --
 # see gha's own comments on the App-token validation 401). This caller only
-# supplies qwt's Quarto/R-specific review guidance on top.
+# supplies vds's Quarto/R-specific review guidance on top.
 # See https://github.com/Morrison-Lab/gha for inputs and versioning.
 #
 # Secrets are passed explicitly rather than via `secrets: inherit`: GitHub
@@ -58,8 +58,8 @@ jobs:
       # "non-human actor".
       allowed-bots: 'github-actions[bot],claude'
       prompt-addendum: |
-        In addition to the standard checks above, this is the qwt Quarto
-        website template -- small, prose-heavy, and re-used as a template
+        In addition to the standard checks above, this is the vds Quarto
+        website template -- small, prose-heavy, and a notes site
         for downstream books -- so also prioritize:
 
         1. **Quarto / prose correctness**

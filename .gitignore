@@ -7,7 +7,7 @@
 *.epub
 *.html
 # Source HTML partials we intentionally track (not build output).
-!qwt-reveal-toggle.html
+!vds-reveal-toggle.html
 !theme-picker.html
 !page-navigation.html
 !anchor-landing.html

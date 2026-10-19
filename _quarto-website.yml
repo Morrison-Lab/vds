@@ -201,7 +201,7 @@ format:
   revealjs:
     output-file: "{stem}-slides.html"
     theme: [simple, styles-reveal.scss]
-    include-in-header: qwt-reveal-toggle.html
+    include-in-header: vds-reveal-toggle.html
     slide-number: true
     chalkboard: false
     preview-links: auto

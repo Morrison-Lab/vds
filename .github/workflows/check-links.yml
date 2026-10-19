@@ -4,7 +4,7 @@ name: Check Links
 # The reusable workflow reproduces the previous standalone behavior: lychee
 # link check over .qmd/.md/.html, a PR skip-label ("links checked by hand"),
 # and auto-filing an issue when links break on main. We pass our repo-local
-# lychee.toml so the qwt-specific excludes (e.g. quarto.org) still apply.
+# lychee.toml so the vds-specific excludes (e.g. quarto.org) still apply.
 # See https://github.com/Morrison-Lab/gha for inputs and versioning.
 
 on:
