@@ -1,0 +1,10 @@
+# Visualization Notes
+
+> Notes on visualizing data
+
+## Pages
+
+- [Quarto Website Template](https://morrison-lab.github.io/vds/index.llms.md)
+- [Chapter 2: Advanced Topics](https://morrison-lab.github.io/vds/chapters/chapter2.llms.md)
+- [Chapter 1: Introduction](https://morrison-lab.github.io/vds/chapters/chapter1.llms.md)
+- [Theorem Examples](https://morrison-lab.github.io/vds/chapters/theorem-examples.llms.md)
