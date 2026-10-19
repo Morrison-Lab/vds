@@ -1,4 +1,4 @@
-# zizmor configuration for qwt.
+# zizmor configuration for vds.
 #
 # See https://docs.zizmor.sh/configuration/. `lint-workflows.yml` runs zizmor
 # in its default `regular` persona; this file adjusts one audit and nothing

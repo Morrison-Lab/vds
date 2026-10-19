@@ -60,5 +60,5 @@ jobs:
       SUBMODULES_TOKEN: ${{ secrets.SUBMODULES_TOKEN }}   # optional; latex-macros/ is public, so unset is fine
       WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}       # optional; for editing .github/workflows
     with:
-      install-quarto: true      # qwt is a Quarto site; Claude may need to render .qmd files
+      install-quarto: true      # vds is a Quarto site; Claude may need to render .qmd files
       checkout-submodules: true # latex-macros/ (public; no SUBMODULES_TOKEN needed)

@@ -4,7 +4,9 @@ Project guidance for Claude Code (CLI, IDE, and the GitHub Action). The same con
 
 ## Project context
 
-`qwt` (Quarto Website Template) is a template repository for [Quarto](https://quarto.org/) websites maintained by the UCD-SERG lab. Downstream repos are created from this template via the GitHub "Use this template" button, so changes here propagate to new books.
+`vds` is the Quarto website of visualization notes at <https://morrison-lab.github.io/vds/>,
+created from the `qwt` Quarto website template.
+Pages hold R and Python code that runs when the site is built.
 
 Authoritative style guides:
 
@@ -26,7 +28,8 @@ Authoritative style guides:
 - `page-navigation.html` --- HTML include (`format.html.include-after-body`) that adds floating previous/next arrows in the page margins and fixes navbar highlighting now that Home is in the sidebar; vendored from `Morrison-Lab/lbt` (a private repo, so not linked)
 - `anchor-landing.html` --- HTML include (`format.html.include-after-body`) that keeps the reader's place while equations and images change the page height
   (the same file as in `Morrison-Lab/lds`)
-- `styles.css` --- website styling; `styles-reveal.scss`, `qwt-reveal-toggle.html` (the same four-theme dropdown for slides), and the `revealjs-*.lua` filters drive the reveal.js slide output
+- `styles.css` --- website styling
+- `styles-reveal.scss`, `vds-reveal-toggle.html` (the same four-theme dropdown for slides), and the `revealjs-*.lua` filters drive the reveal.js slide output
 - `assets/`, `images/` --- static image and asset files (site pages, docs, CI/PR screenshots)
 - `.github/workflows/` --- CI workflow definitions
 - `.github/scripts/` --- helper scripts used by workflows
