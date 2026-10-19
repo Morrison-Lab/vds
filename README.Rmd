@@ -1,5 +1,7 @@
 ---
-output: github_document
+output:
+  github_document:
+    pandoc_args: ["--wrap=preserve"]
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -24,12 +26,12 @@ quarto render    # the whole site, into _site/
 1. Create a `.qmd` file in `chapters/`, with a distinct `output-file` for each format.
 2. Add it to the navbar and the sidebar in `_quarto-website.yml`, in the same order.
    The sidebar order sets the previous and next links.
-3. Put the page's data in `chapters/data/` and list it under `resources:` in the page.
+3. Put the data for the page in `chapters/data/` and list it under `resources:` in the page.
 4. Add each source to `references.bib` and cite it with `[@key]`.
 
 ## Layout
 
-- `index.qmd`, `chapters/`: the pages, with each page's units in `chapters/_subfiles/`.
+- `index.qmd`, `chapters/`: the pages, with the units of each page in `chapters/_subfiles/`.
 - `_quarto.yml`, `_quarto-website.yml`: Quarto project and website settings.
 - `latex-macros/`: the [`Morrison-Lab/macros`](https://github.com/Morrison-Lab/macros) submodule.
 - `.github/`: workflows for publishing, previews, and checks.

@@ -3,14 +3,12 @@
 
 # vds (Visualization Notes)
 
-Notes on visualizing data, as a [Quarto](https://quarto.org/) website
-with R and Python code. The site is at
-<https://morrison-lab.github.io/vds/>.
+Notes on visualizing data, as a [Quarto](https://quarto.org/) website with R and Python code.
+The site is at <https://morrison-lab.github.io/vds/>.
 
 ## Building the site
 
-Install [Quarto](https://quarto.org/docs/get-started/) (version 1.9.36
-or newer, for the `llms-txt` option), then run:
+Install [Quarto](https://quarto.org/docs/get-started/) (version 1.9.36 or newer, for the `llms-txt` option), then run:
 
 ``` bash
 git submodule update --init --recursive
@@ -20,23 +18,17 @@ quarto render    # the whole site, into _site/
 
 ## Adding a page
 
-1.  Create a `.qmd` file in `chapters/`, with a distinct `output-file`
-    for each format.
-2.  Add it to the navbar and the sidebar in `_quarto-website.yml`, in
-    the same order. The sidebar order sets the previous and next links.
-3.  Put the page’s data in `chapters/data/` and list it under
-    `resources:` in the page.
+1.  Create a `.qmd` file in `chapters/`, with a distinct `output-file` for each format.
+2.  Add it to the navbar and the sidebar in `_quarto-website.yml`, in the same order.
+    The sidebar order sets the previous and next links.
+3.  Put the data for the page in `chapters/data/` and list it under `resources:` in the page.
 4.  Add each source to `references.bib` and cite it with `[@key]`.
 
 ## Layout
 
-- `index.qmd`, `chapters/`: the pages, with each page’s units in
-  `chapters/_subfiles/`.
-- `_quarto.yml`, `_quarto-website.yml`: Quarto project and website
-  settings.
-- `latex-macros/`: the
-  [`Morrison-Lab/macros`](https://github.com/Morrison-Lab/macros)
-  submodule.
+- `index.qmd`, `chapters/`: the pages, with the units of each page in `chapters/_subfiles/`.
+- `_quarto.yml`, `_quarto-website.yml`: Quarto project and website settings.
+- `latex-macros/`: the [`Morrison-Lab/macros`](https://github.com/Morrison-Lab/macros) submodule.
 - `.github/`: workflows for publishing, previews, and checks.
 
 ## License
