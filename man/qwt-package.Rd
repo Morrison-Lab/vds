@@ -4,20 +4,26 @@
 \name{qwt-package}
 \alias{qwt}
 \alias{qwt-package}
-\title{qwt: Quarto Website Template}
+\title{qwt: Visualization Notes}
 \description{
 A template for creating websites with Quarto. Includes support for multiple output formats including HTML, DOCX, RevealJS slides, and PDF handouts.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/UCD-SERG/qwt}
-  \item Report bugs at \url{https://github.com/UCD-SERG/qwt/issues}
+  \item \url{https://github.com/Morrison-Lab/vds}
+  \item \url{https://morrison-lab.github.io/vds/}
+  \item Report bugs at \url{https://github.com/Morrison-Lab/vds/issues}
 }
 
 }
 \author{
 \strong{Maintainer}: Your Name \email{your.email@example.com}
+
+Authors:
+\itemize{
+  \item Your Name \email{your.email@example.com}
+}
 
 }
 \keyword{internal}
