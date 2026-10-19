@@ -59,8 +59,8 @@ jobs:
       allowed-bots: 'github-actions[bot],claude'
       prompt-addendum: |
         In addition to the standard checks above, this is the vds Quarto
-        website template -- small, prose-heavy, and a notes site
-        for downstream books -- so also prioritize:
+        website of visualization notes -- small and prose-heavy -- so also
+        prioritize:
 
         1. **Quarto / prose correctness**
            - `.qmd` syntax: chunk options use `#|` directives, fenced
