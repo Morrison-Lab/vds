@@ -2,34 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://morrison-lab.github.io/vds/index.html</loc>
-    <lastmod>2026-10-19T09:13:51.056Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/index-slides.html</loc>
-    <lastmod>2026-10-19T09:13:51.056Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/chapters/chapter2.html</loc>
-    <lastmod>2026-10-19T09:13:51.056Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/chapters/chapter2-slides.html</loc>
-    <lastmod>2026-10-19T09:13:51.056Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://morrison-lab.github.io/vds/chapters/binary-outcomes.html</loc>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://morrison-lab.github.io/vds/chapters/binary-outcomes-slides.html</loc>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/chapters/chapter1-slides.html</loc>
-    <lastmod>2026-10-19T09:13:51.055Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/chapters/chapter1.html</loc>
-    <lastmod>2026-10-19T09:13:51.055Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/chapters/{stem}-slides.html</loc>
-    <lastmod>2026-10-19T09:13:51.056Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
   <url>
     <loc>https://morrison-lab.github.io/vds/chapters/theorem-examples.html</loc>
-    <lastmod>2026-10-19T09:13:51.056Z</lastmod>
+    <lastmod>2026-10-19T09:16:46.039Z</lastmod>
   </url>
 </urlset>
