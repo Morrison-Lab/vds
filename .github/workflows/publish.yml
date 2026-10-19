@@ -27,6 +27,8 @@ jobs:
         any::knitr
         any::rmarkdown
         any::tibble
+        any::ggplot2
+        any::reticulate
       tinytex: true
       # One bare `quarto render` of every declared format, as before.
       formats: ''
