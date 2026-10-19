@@ -27,8 +27,8 @@ breaks <- seq(floor(min(wcgs$bmi)), ceiling(max(wcgs$bmi)), by = 1)
 bars <- function(data, chd_value) {
   counts <- hist(data$bmi[data$chd == chd_value], breaks = breaks,
                  plot = FALSE)$counts
-  data.frame(xmin = head(breaks, -1), xmax = tail(breaks, -1),
-             height = 0.3 * counts / max(counts))
+  tibble::tibble(xmin = head(breaks, -1), xmax = tail(breaks, -1),
+                 height = 0.3 * counts / max(counts))
 }
 bars0 <- bars(wcgs, 0)
 bars1 <- bars(wcgs, 1)
@@ -39,7 +39,7 @@ ggplot(wcgs, aes(bmi, chd)) +
   geom_rect(data = bars1,
             aes(xmin = xmin, xmax = xmax, ymin = 1 - height, ymax = 1),
             inherit.aes = FALSE, alpha = 0.4) +
-  geom_smooth(method = "lm", se = FALSE) +
+  geom_line(aes(y = fitted(fit_bmi))) +
   labs(x = "Body mass index (bmi)", y = "Fitted chd")
 ```
 

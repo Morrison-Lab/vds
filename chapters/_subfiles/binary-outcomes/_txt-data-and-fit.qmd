@@ -9,7 +9,7 @@ Each plot also shows the line fitted to `chd` by least squares on `bmi`.
 
 ```{r}
 #| code-fold: false
-wcgs <- read.csv("data/wcgs.csv")
+wcgs <- readr::read_csv("data/wcgs.csv", show_col_types = FALSE)
 fit_bmi <- lm(chd ~ bmi, data = wcgs)
 ```
 

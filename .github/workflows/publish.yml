@@ -27,6 +27,7 @@ jobs:
         any::knitr
         any::rmarkdown
         any::tibble
+        any::readr
         any::ggplot2
         any::reticulate
       tinytex: true

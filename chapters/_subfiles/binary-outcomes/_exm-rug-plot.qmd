@@ -25,7 +25,7 @@ ggplot(wcgs, aes(bmi, chd)) +
   geom_rug(data = subset(wcgs, chd == 0), sides = "b", alpha = 0.3) +
   geom_rug(data = subset(wcgs, chd == 1), sides = "t", alpha = 0.3) +
   geom_hline(yintercept = c(0, 1), linetype = "dashed") +
-  geom_smooth(method = "lm", se = FALSE) +
+  geom_line(aes(y = fitted(fit_bmi))) +
   labs(x = "Body mass index (bmi)", y = "Fitted chd")
 ```
 
