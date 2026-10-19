@@ -1,0 +1,40 @@
+---
+title: "Plotting a Binary Outcome"
+format:
+  html: default
+  revealjs:
+    output-file: binary-outcomes-slides.html
+  pdf:
+    output-file: binary-outcomes-handout.pdf
+  docx:
+    output-file: binary-outcomes.docx
+resources:
+  - data/wcgs.csv
+---
+
+```{r}
+#| include: false
+library(reticulate)
+py_require(c("numpy", "pandas", "matplotlib"))
+```
+
+## Why a scatterplot fails
+
+An outcome that takes only the values 0 and 1 puts every point of a scatterplot on one of two horizontal stripes.
+Dots on the same stripe overlap wherever the feature takes similar values, so the plot hides how many observations there are.
+Two plots avoid this: a rug and a pair of histograms.
+
+{{< include _subfiles/binary-outcomes/_txt-data-and-fit.qmd >}}
+
+## A rug
+
+{{< include _subfiles/binary-outcomes/_exm-rug-plot.qmd >}}
+
+## Two histograms
+
+{{< include _subfiles/binary-outcomes/_exm-two-histograms.qmd >}}
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

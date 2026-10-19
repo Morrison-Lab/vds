@@ -41,6 +41,8 @@ website:
             href: chapters/chapter2.qmd
           - text: "Theorem Examples"
             href: chapters/theorem-examples.qmd
+          - text: "Plotting a Binary Outcome"
+            href: chapters/binary-outcomes.qmd
     right:
       - icon: github
         href: https://github.com/UCD-SERG/qwt
@@ -64,6 +66,7 @@ website:
           - chapters/chapter1.qmd
           - chapters/chapter2.qmd
           - chapters/theorem-examples.qmd
+          - chapters/binary-outcomes.qmd
 
 callouty-theorem:
   thm:

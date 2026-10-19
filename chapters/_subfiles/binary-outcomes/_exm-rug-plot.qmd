@@ -1,0 +1,48 @@
+::: {#exm-rug-plot}
+
+#### A rug of the WCGS outcome
+
+A rug draws one tick per observation along an axis.
+Draw the men with `chd` $= 0$ along the bottom edge and the men with `chd` $= 1$ along the top edge.
+Transparent ticks darken where many observations share nearly the same `bmi`.
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| code-fold: false
+#| fig-cap: "Fitted line of `chd` on `bmi` in the WCGS data, with a rug of the men with `chd` = 1 along the top and `chd` = 0 along the bottom."
+#| fig-alt: "A straight line rising gently from near 0 at low body mass index to about 0.18 at the highest, drawn over dense tick marks along the bottom edge for men without coronary heart disease and sparse tick marks along the top edge for men with it. The line dips just below 0 at the far left."
+library(ggplot2)
+ggplot(wcgs, aes(bmi, chd)) +
+  geom_rug(data = subset(wcgs, chd == 0), sides = "b", alpha = 0.3) +
+  geom_rug(data = subset(wcgs, chd == 1), sides = "t", alpha = 0.3) +
+  geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Body mass index (bmi)", y = "Fitted chd")
+```
+
+### Python
+
+```{python}
+#| code-fold: false
+#| fig-cap: "Fitted line of `chd` on `bmi` in the WCGS data, with a rug of the men with `chd` = 1 along the top and `chd` = 0 along the bottom."
+#| fig-alt: "A straight line rising gently from near 0 at low body mass index to about 0.18 at the highest, drawn over dense tick marks along the bottom edge for men without coronary heart disease and sparse tick marks along the top edge for men with it. The line dips just below 0 at the far left."
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+for chd, side in [(0, 0.0), (1, 1.0)]:
+    bmi_chd = wcgs.loc[wcgs["chd"] == chd, "bmi"]
+    ax.plot(bmi_chd, [side] * len(bmi_chd), "|", color="gray", alpha=0.3)
+ax.axhline(0, linestyle="--", color="black")
+ax.axhline(1, linestyle="--", color="black")
+ax.plot(wcgs["bmi"], fitted_bmi)
+ax.set_xlabel("Body mass index (bmi)")
+ax.set_ylabel("Fitted chd")
+plt.show()
+```
+
+:::
+
+:::
