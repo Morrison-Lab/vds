@@ -27,6 +27,9 @@ jobs:
         any::knitr
         any::rmarkdown
         any::tibble
+        any::readr
+        any::ggplot2
+        any::reticulate
       # This repo has a DESCRIPTION for lintr and tooling, but pages do not
       # call its functions, and the old workflow never installed it.
       install-package: false

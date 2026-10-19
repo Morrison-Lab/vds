@@ -1,0 +1,67 @@
+::: {#exm-two-histograms}
+
+#### Two histograms of the WCGS feature
+
+A histogram of `bmi` for the men with `chd` $= 0$ stands on the line $y = 0$.
+A histogram for the men with `chd` $= 1$ hangs down from the line $y = 1$.
+Each histogram is scaled so its tallest bar is $0.3$ high, because there are far fewer cases than non-cases and the raw counts would hide the smaller group.
+The heights then show each group's shape, not how many men it holds.
+
+::: {.panel-tabset}
+
+### R
+
+```{r}
+#| code-fold: false
+#| fig-cap: >-
+#|   The same line, with a histogram of `bmi` for the men with `chd` = 0
+#|   standing on the line y = 0 and one for the men with `chd` = 1 hanging
+#|   from the line y = 1. Each histogram is scaled so its tallest bar is 0.3
+#|   high.
+#| fig-alt: >-
+#|   The same rising straight line, with a histogram standing on y equals 0
+#|   and a histogram hanging down from y equals 1, both peaking near a body
+#|   mass index of 25 and both scaled to the same maximum height of 0.3.
+#|   The line dips just below 0 at the far left.
+breaks <- seq(floor(min(wcgs$bmi)), ceiling(max(wcgs$bmi)), by = 1)
+bars <- function(data, chd_value) {
+  counts <- hist(data$bmi[data$chd == chd_value], breaks = breaks,
+                 plot = FALSE)$counts
+  tibble::tibble(xmin = head(breaks, -1), xmax = tail(breaks, -1),
+                 height = 0.3 * counts / max(counts))
+}
+bars0 <- bars(wcgs, 0)
+bars1 <- bars(wcgs, 1)
+ggplot(wcgs, aes(bmi, chd)) +
+  geom_rect(data = bars0,
+            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = height),
+            inherit.aes = FALSE, alpha = 0.4) +
+  geom_rect(data = bars1,
+            aes(xmin = xmin, xmax = xmax, ymin = 1 - height, ymax = 1),
+            inherit.aes = FALSE, alpha = 0.4) +
+  geom_line(aes(y = fitted(fit_bmi))) +
+  labs(x = "Body mass index (bmi)", y = "Fitted chd")
+```
+
+### Python
+
+```{python}
+#| code-fold: false
+#| fig-cap: "The same line, with a histogram of `bmi` for the men with `chd` = 0 standing on the line y = 0 and one for the men with `chd` = 1 hanging from the line y = 1. Each histogram is scaled so its tallest bar is 0.3 high."
+#| fig-alt: "The same rising straight line, with a histogram standing on y equals 0 and a histogram hanging down from y equals 1, both peaking near a body mass index of 25 and both scaled to the same maximum height of 0.3. The line dips just below 0 at the far left."
+breaks = np.arange(np.floor(wcgs["bmi"].min()), np.ceil(wcgs["bmi"].max()) + 1)
+
+fig, ax = plt.subplots()
+for chd, base, sign in [(0, 0.0, 1), (1, 1.0, -1)]:
+    counts, _ = np.histogram(wcgs.loc[wcgs["chd"] == chd, "bmi"], bins=breaks)
+    ax.bar(breaks[:-1], sign * 0.3 * counts / counts.max(), width=1,
+           bottom=base, align="edge", alpha=0.4)
+ax.plot(wcgs["bmi"], fitted_bmi)
+ax.set_xlabel("Body mass index (bmi)")
+ax.set_ylabel("Fitted chd")
+plt.show()
+```
+
+:::
+
+:::
