@@ -1,71 +1,26 @@
-# Quarto Website Template
+# Visualization Notes
 
 Code
 
 Published
 
-Last modified: 2026-10-19 03:05:30 (PDT)
+Last modified: 2026-10-19 03:20:25 (PDT)
 
 # Welcome
 
-This is a Quarto website template that you can use to create your own website.
+These notes cover how to visualize data. Each page works through one plot, with R and Python code side by side. The code runs when the site is built, so every figure comes from the data shown.
 
-The notes are available in multiple formats:
+## 0.1 Pages
 
-- **HTML Website**: Navigate using the navbar for easy access to all pages
-- **RevealJS Slides**: Each chapter can generate a presentation format with `-slides.html` suffix
-- **PDF Handouts**: Each chapter can generate a PDF handout with `-handout.pdf` suffix
-- **DOCX Documents**: Each chapter can generate a Microsoft Word document with `.docx` extension
+- [Plotting a Binary Outcome](chapters/binary-outcomes.llms.md): a rug and two histograms for a 0/1 outcome and a continuous feature.
 
-## 0.1 About this website
+## 0.2 Formats
 
-This website is built with [Quarto](https://quarto.org/), an open-source scientific and technical publishing system. You can use Quarto to create books, websites, blogs, presentations, and more from markdown files.
+Each page is available in these formats:
 
-## 0.2 Getting Started
-
-To use this template:
-
-1.  **Update the configuration**: Edit `_quarto-website.yml` to change the website title, site URL, and navigation menu.
-
-2.  **Add your content**: Create new `.qmd` files for each page and add them to the navigation menu and the sidebar in `_quarto-website.yml` (the sidebar order sets the previous/next page links).
-
-3.  **Customize the style**: Modify `styles.css` to change the appearance of your website.
-
-4.  **Add references**: Update `references.bib` with your citations.
-
-## 0.3 Building the website
-
-To render the website locally:
-
-``` bash
-quarto render
-```
-
-To preview the website with live reload:
-
-``` bash
-quarto preview
-```
-
-The rendered output will be in the `_site/` directory, which can be published to GitHub Pages.
-
-## 0.4 Publishing to GitHub Pages
-
-This template includes a GitHub Actions workflow that automatically builds and publishes your website to GitHub Pages when you push to the main branch.
-
-To enable GitHub Pages:
-
-1.  Go to your repository settings
-2.  Navigate to “Pages” in the left sidebar
-3.  Under “Build and deployment”, set Source to “GitHub Actions”
-4.  Push your changes to the main branch
-5.  The workflow will automatically build and deploy your website
-
-Your website will be available at `https://YOUR-USERNAME.github.io/YOUR-REPO/`
-
-## 0.5 License
-
-Add your license information here.
+- an HTML web page;
+- RevealJS slides, at the same address with `-slides` added to the page name;
+- a PDF handout and a Word document.
 
 ## References
 
