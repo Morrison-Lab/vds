@@ -14,9 +14,9 @@ project:
     - "!latex-macros/"
 
 website:
-  title: "Quarto Website Template"
-  site-url: https://ucd-serg.github.io/qwt/
-  description: "A template for creating websites with Quarto"
+  title: "Visualization Notes"
+  site-url: https://morrison-lab.github.io/vdt/
+  description: "Notes on visualizing data"
   # https://quarto.org/docs/websites/website-llms.html --- use `llms-txt:`, not `llms:` (schema error)
   llms-txt: true
   page-footer:
@@ -27,7 +27,7 @@ website:
   # https://quarto.org/docs/websites/website-navigation.html#page-navigation
   page-navigation: true
   reader-mode: true
-  repo-url: https://github.com/UCD-SERG/qwt
+  repo-url: https://github.com/Morrison-Lab/vdt
   repo-actions: [edit, issue, source]
   navbar:
     left:
@@ -43,7 +43,7 @@ website:
             href: chapters/theorem-examples.qmd
     right:
       - icon: github
-        href: https://github.com/UCD-SERG/qwt
+        href: https://github.com/Morrison-Lab/vdt
         aria-label: GitHub
 
   # The sidebar sets the previous/next page links, so keep it in the same
