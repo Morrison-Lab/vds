@@ -33,7 +33,7 @@ quarto render    # the whole site, into _site/
 
 ## Why a separate repository
 
-The `{qnp}` R package, with the lab's ggplot2 theme and colors, lives in [its own repository](https://github.com/Morrison-Lab/qnp), not here.
+The `{qnp}` R package, with the lab's `ggplot2` theme and colors, lives in [its own repository](https://github.com/Morrison-Lab/qnp), not here.
 The decision and its reasons are in the lab's [repository-template guidance](https://github.com/Morrison-Lab/ai-config/blob/main/shared/workflow/repo-templates.md#keep-an-r-package-and-a-notes-site-in-separate-repositories).
 
 ## License
