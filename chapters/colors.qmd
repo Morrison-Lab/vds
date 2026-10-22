@@ -18,8 +18,9 @@ Instead of judging by eye, simulate the common kinds of color vision deficiency 
 The `colorblindcheck` package [@colorblindcheck] does this.
 Its `palette_check()` function returns the smallest distance between two colors of a palette,
 under normal vision and under each simulated deficiency.
-A smallest distance of about 10 or more means every pair is easy to tell apart.
-Below that, some pair is hard to tell apart for some readers.
+As a rule of thumb, a smallest distance of about 10 or more means every pair is easy to tell apart.
+This chapter uses that rule of thumb as its cutoff; the package does not define one.
+Below the cutoff, some pair is hard to tell apart for some readers.
 
 ::: {#exm-palette-comparison}
 
@@ -75,7 +76,7 @@ expand.grid(palette = names(palettes), groups = c(3, 5, 7, 10)) |>
   tibble::as_tibble() |>
   dplyr::rowwise() |>
   dplyr::mutate(
-    distance = worst_case_distance(palettes[[palette]], groups)
+    distance = worst_case_distance(palettes[[as.character(palette)]], groups)
   ) |>
   dplyr::ungroup() |>
   tidyr::pivot_wider(
@@ -88,6 +89,7 @@ expand.grid(palette = names(palettes), groups = c(3, 5, 7, 10)) |>
 
 :::
 
+@exm-palette-comparison shows the results.
 The Okabe-Ito palette [@okabe2008] stays above 10 for all 7 of its colors,
 and with 10 groups no palette tested reaches 10.
 The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly.
@@ -98,10 +100,14 @@ Its `muted` scheme has at most 9 colors.
 
 ## What to do with many groups
 
-With more than 7 groups, no tested palette keeps every pair easy to tell apart.
+With 10 groups, no tested palette keeps every pair easy to tell apart,
+and the table does not test 8 or 9 groups.
 Pair color with shape or line type, so that color is never the only way to tell groups apart.
 Better still, show fewer groups: combine small groups, or split the figure into panels.
 
 The `rcartocolor` package's `Safe` palette gives up to 12 colors,
-which makes it the fallback when a figure needs more than 7 groups.
-The `fxtas` package uses it for biomarker groups.
+so it is the fallback when a figure needs more than 7 groups.
+Its smallest distance is about 5 to 6 at every size in the table,
+which is below the cutoff,
+so it is a fallback and not a recommendation.
+The [`fxtas` package](https://github.com/ucdavis/fxtas) uses it for its biomarker groups.
