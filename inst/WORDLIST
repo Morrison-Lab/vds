@@ -1,9 +1,11 @@
 CLI
 DOCX
+Dark2
 Okabe
 RColorBrewer
 RevealJS
 SERG
+Set2
 TinyTeX
 UCD
 biomarker
@@ -16,3 +18,4 @@ protanopia
 rulesets
 submodule
 tritanopia
+viridis

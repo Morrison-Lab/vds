@@ -103,3 +103,8 @@ Better still, show fewer groups: combine small groups, or split the figure into 
 The `rcartocolor` package's `Safe` palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups.
 Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation.
 The [`fxtas` package](https://github.com/ucdavis/fxtas) uses it for its biomarker groups.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

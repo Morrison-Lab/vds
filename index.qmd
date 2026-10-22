@@ -19,6 +19,7 @@ The code runs when the site is built, so every figure comes from the data shown.
 ## Pages
 
 - [Plotting a Binary Outcome](chapters/binary-outcomes.qmd): a rug and two histograms for a 0/1 outcome and a continuous feature.
+- [Choosing Colors](chapters/colors.qmd): how far apart a palette's closest two colors are under simulated color vision deficiency.
 
 ## Formats
 
