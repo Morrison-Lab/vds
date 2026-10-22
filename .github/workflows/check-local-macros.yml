@@ -1,0 +1,26 @@
+# Thin caller of Morrison-Lab/gha's reusable local-macro check.
+#
+# Flags a macro defined in this repository (`\newcommand`, `\def`,
+# `\DeclareMathOperator` and the rest) on lines a PR adds. New macros belong in
+# Morrison-Lab/macros, never here. A `macros-override.*` file may redefine only
+# a name the library already defines. Blocking.
+#
+# Why it exists: agents kept writing literal math instead of the semantic
+# macros (Morrison-Lab/ai-config#4673).
+
+name: Check macros defined outside the library
+
+on:
+  pull_request:
+
+jobs:
+  check:
+    permissions:
+      contents: read
+    uses: Morrison-Lab/gha/.github/workflows/check-local-macros.yml@v3
+    with:
+      submodules: 'true'
+      library: 'latex-macros/macros.qmd'
+      # Vendored Quarto extensions are not ours to edit.
+      paths-ignore: '_extensions/**'
+      fail: true
