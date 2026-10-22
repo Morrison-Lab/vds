@@ -37,6 +37,8 @@ website:
         menu:
           - text: "Plotting a Binary Outcome"
             href: chapters/binary-outcomes.qmd
+          - text: "Choosing Colors"
+            href: chapters/colors.qmd
     right:
       - icon: github
         href: https://github.com/Morrison-Lab/vds
@@ -58,6 +60,7 @@ website:
       - section: "Chapters"
         contents:
           - chapters/binary-outcomes.qmd
+          - chapters/colors.qmd
 
 callouty-theorem:
   thm:
