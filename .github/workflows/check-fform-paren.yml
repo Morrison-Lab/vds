@@ -1,0 +1,25 @@
+# Thin caller of Morrison-Lab/gha's reusable f-form check.
+#
+# Flags a hand-typed delimiter macro (`\paren`, `\sb`, `\cb`) after a macro
+# whose library defines a call form (`\namef{...}`), on lines a PR adds. It is
+# diff-scoped, so it never reflags older text. Blocking.
+#
+# Why it exists: agents kept writing literal math instead of the semantic
+# macros (Morrison-Lab/ai-config#4673). Reads `latex-macros/macros.qmd`, so it
+# needs the submodule, which the reusable workflow checks out.
+
+name: Check f forms written as name-paren
+
+on:
+  pull_request:
+
+jobs:
+  check:
+    permissions:
+      contents: read
+    uses: Morrison-Lab/gha/.github/workflows/check-fform-paren.yml@v3
+    with:
+      macros-file: 'latex-macros/macros.qmd'
+      # Vendored Quarto extensions are not ours to edit.
+      paths-ignore: '_extensions/**'
+      fail: true
