@@ -14,13 +14,13 @@ Code
 
 Published
 
-Last modified: 2026-10-22 15:21:24 (PDT)
+Last modified: 2026-10-22 15:42:28 (PDT)
 
 ## 1 Why test a palette
 
 A palette that looks distinct to you can merge for readers with a color vision deficiency. Instead of judging by eye, simulate the common kinds of color vision deficiency and measure how far apart the closest two colors get.
 
-The `colorblindcheck` package ([Nowosad 2024](#ref-colorblindcheck)) does this. Its `palette_check()` function returns the smallest distance between two colors of a palette, under normal vision and under each simulated deficiency. A smallest distance of about 10 or more means every pair is easy to tell apart. Below that, some pair is hard to tell apart for some readers.
+The `colorblindcheck` package ([Nowosad 2025](#ref-colorblindcheck)) does this. Its `palette_check()` function returns the smallest distance between two colors of a palette, under normal vision and under each simulated deficiency. As a rule of thumb, a smallest distance of about 10 or more means every pair is easy to tell apart. This chapter uses that rule of thumb as its cutoff; the package does not define one. Below the cutoff, some pair is hard to tell apart for some readers.
 
 > **NOTE:**
 >
@@ -67,7 +67,7 @@ The `colorblindcheck` package ([Nowosad 2024](#ref-colorblindcheck)) does this. 
 >   tibble::as_tibble() |>
 >   dplyr::rowwise() |>
 >   dplyr::mutate(
->     distance = worst_case_distance(palettes[[palette]], groups)
+>     distance = worst_case_distance(palettes[[as.character(palette)]], groups)
 >   ) |>
 >   dplyr::ungroup() |>
 >   tidyr::pivot_wider(
@@ -90,18 +90,18 @@ The `colorblindcheck` package ([Nowosad 2024](#ref-colorblindcheck)) does this. 
 >
 > Table 1: Smallest distance between two colors under simulated color vision deficiency, by palette and number of groups. Higher is better; about 10 or more is easy to tell apart.
 
-The Okabe-Ito palette ([Okabe and Ito 2008](#ref-okabe2008)) stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The `khroma` package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its `muted` scheme has at most 9 colors.
+[Example 1](#exm-palette-comparison) shows the results. The Okabe-Ito palette ([Okabe and Ito 2008](#ref-okabe2008)) stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The `khroma` package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its `muted` scheme has at most 9 colors.
 
 ## 2 What to do with many groups
 
-With more than 7 groups, no tested palette keeps every pair easy to tell apart. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.
+With 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.
 
-The `rcartocolor` package’s `Safe` palette gives up to 12 colors, which makes it the fallback when a figure needs more than 7 groups. The `fxtas` package uses it for biomarker groups.
+The `rcartocolor` package’s `Safe` palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The [`fxtas` package](https://github.com/ucdavis/fxtas) uses it for its biomarker groups.
 
 Back to top
 
 ## References
 
-Nowosad, Jakub. 2024. *Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency*. <https://CRAN.R-project.org/package=colorblindcheck>.
+Nowosad, Jakub. 2025. *Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency*. <https://CRAN.R-project.org/package=colorblindcheck>.
 
 Okabe, Masataka, and Kei Ito. 2008. *Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People*. <https://jfly.uni-koeln.de/color/>.

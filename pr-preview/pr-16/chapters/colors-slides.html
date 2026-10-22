@@ -340,7 +340,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-22 15:21:24 (PDT)</p>
+  <p class="date">Last modified: 2026-10-22 15:42:28 (PDT)</p>
 </section>
 <section id="why-test-a-palette" class="slide level2" data-number="1">
 <h2><span class="header-section-number">1</span> Why test a palette</h2>
@@ -348,7 +348,7 @@
 <section class="slide level2">
 
 <p>A palette that looks distinct to you can merge for readers with a color vision deficiency. Instead of judging by eye, simulate the common kinds of color vision deficiency and measure how far apart the closest two colors get.</p>
-<p>The <code>colorblindcheck</code> package <span class="citation" data-cites="colorblindcheck">(<a href="#/references" role="doc-biblioref" onclick="">Nowosad 2024</a>)</span> does this. Its <code>palette_check()</code> function returns the smallest distance between two colors of a palette, under normal vision and under each simulated deficiency. A smallest distance of about 10 or more means every pair is easy to tell apart. Below that, some pair is hard to tell apart for some readers.</p>
+<p>The <code>colorblindcheck</code> package <span class="citation" data-cites="colorblindcheck">(<a href="#/references" role="doc-biblioref" onclick="">Nowosad 2025</a>)</span> does this. Its <code>palette_check()</code> function returns the smallest distance between two colors of a palette, under normal vision and under each simulated deficiency. As a rule of thumb, a smallest distance of about 10 or more means every pair is easy to tell apart. This chapter uses that rule of thumb as its cutoff; the package does not define one. Below the cutoff, some pair is hard to tell apart for some readers.</p>
 <div id="exm-palette-comparison" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Comparing qualitative palettes)</strong></span> This example computes, for each palette and number of groups, the smallest distance between two colors under the worst of the three simulated deficiencies (deuteranopia, protanopia and tritanopia). A dash marks a palette that has fewer colors than groups.</p>
 <div class="cell">
@@ -392,7 +392,7 @@
 <span id="cb1-36"><a aria-label="36"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
 <span id="cb1-37"><a aria-label="37"></a>  dplyr<span class="sc">::</span><span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
 <span id="cb1-38"><a aria-label="38"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb1-39"><a aria-label="39"></a>    <span class="at">distance =</span> <span class="fu">worst_case_distance</span>(palettes[[palette]], groups)</span>
+<span id="cb1-39"><a aria-label="39"></a>    <span class="at">distance =</span> <span class="fu">worst_case_distance</span>(palettes[[<span class="fu">as.character</span>(palette)]], groups)</span>
 <span id="cb1-40"><a aria-label="40"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb1-41"><a aria-label="41"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
 <span id="cb1-42"><a aria-label="42"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
@@ -477,15 +477,15 @@ Table&nbsp;1: Smallest distance between two colors under simulated color vision 
 </div>
 </div>
 </div>
-<p>The Okabe-Ito palette <span class="citation" data-cites="okabe2008">(<a href="#/references" role="doc-biblioref" onclick="">Okabe and Ito 2008</a>)</span> stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The <code>khroma</code> package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its <code>muted</code> scheme has at most 9 colors.</p>
+<p><a href="#/exm-palette-comparison" class="quarto-xref">Example&nbsp;1</a> shows the results. The Okabe-Ito palette <span class="citation" data-cites="okabe2008">(<a href="#/references" role="doc-biblioref" onclick="">Okabe and Ito 2008</a>)</span> stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The <code>khroma</code> package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its <code>muted</code> scheme has at most 9 colors.</p>
 </section>
 <section id="what-to-do-with-many-groups" class="slide level2" data-number="2">
 <h2><span class="header-section-number">2</span> What to do with many groups</h2>
 </section>
 <section class="slide level2 smaller scrollable" id="references">
 
-<p>With more than 7 groups, no tested palette keeps every pair easy to tell apart. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.</p>
-<p>The <code>rcartocolor</code> package’s <code>Safe</code> palette gives up to 12 colors, which makes it the fallback when a figure needs more than 7 groups. The <code>fxtas</code> package uses it for biomarker groups.</p>
+<p>With 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.</p>
+<p>The <code>rcartocolor</code> package’s <code>Safe</code> palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The <a href="https://github.com/ucdavis/fxtas"><code>fxtas</code> package</a> uses it for its biomarker groups.</p>
 
 
 <script>
@@ -680,7 +680,7 @@ window.addEventListener("load", alignEquationAnchorsWithDefault);
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-colorblindcheck" class="csl-entry" role="listitem">
-Nowosad, Jakub. 2024. <em>Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency</em>. <a href="https://CRAN.R-project.org/package=colorblindcheck">https://CRAN.R-project.org/package=colorblindcheck</a>.
+Nowosad, Jakub. 2025. <em>Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency</em>. <a href="https://CRAN.R-project.org/package=colorblindcheck">https://CRAN.R-project.org/package=colorblindcheck</a>.
 </div>
 <div id="ref-okabe2008" class="csl-entry" role="listitem">
 Okabe, Masataka, and Kei Ito. 2008. <em>Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People</em>. <a href="https://jfly.uni-koeln.de/color/">https://jfly.uni-koeln.de/color/</a>.
