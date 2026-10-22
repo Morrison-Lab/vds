@@ -10,12 +10,6 @@ format:
     output-file: colors.docx
 ---
 
-```{r}
-#| include: false
-library(dplyr)
-library(tibble)
-```
-
 ## Why test a palette
 
 A palette that looks distinct to you can merge for readers with a color vision deficiency.
@@ -38,7 +32,12 @@ A dash marks a palette that has fewer colors than groups.
 
 ```{r}
 #| label: tbl-palette-comparison
-#| tbl-cap: "Smallest distance between two colors under simulated color vision deficiency, by palette and number of groups. Higher is better; about 10 or more is easy to tell apart."
+#| tbl-cap: >-
+#|   Smallest distance between two colors under simulated color vision
+#|   deficiency, by palette and number of groups.
+#|   Higher is better; about 10 or more is easy to tell apart.
+
+options(knitr.kable.NA = "-")
 
 # order puts blue and vermillion first and leaves out black and grey
 okabe_ito_order <- c(5, 6, 3, 7, 2, 1, 4)
@@ -73,16 +72,18 @@ worst_case_distance <- function(make_palette, n) {
 }
 
 expand.grid(palette = names(palettes), groups = c(3, 5, 7, 10)) |>
-  as_tibble() |>
-  rowwise() |>
-  mutate(distance = worst_case_distance(palettes[[palette]], groups)) |>
-  ungroup() |>
+  tibble::as_tibble() |>
+  dplyr::rowwise() |>
+  dplyr::mutate(
+    distance = worst_case_distance(palettes[[palette]], groups)
+  ) |>
+  dplyr::ungroup() |>
   tidyr::pivot_wider(
     names_from = groups,
     values_from = distance,
     names_prefix = "n = "
   ) |>
-  knitr::kable(digits = 1, na = "-")
+  knitr::kable(digits = 1)
 ```
 
 :::
