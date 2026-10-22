@@ -14,9 +14,9 @@ Code
 
 Published
 
-Last modified: 2026-10-22 15:42:28 (PDT)
+Last modified: 2026-10-22 15:55:46 (PDT)
 
-## 1 Why test a palette
+## 0.1 Why test a palette
 
 A palette that looks distinct to you can merge for readers with a color vision deficiency. Instead of judging by eye, simulate the common kinds of color vision deficiency and measure how far apart the closest two colors get.
 
@@ -92,16 +92,16 @@ The `colorblindcheck` package ([Nowosad 2025](#ref-colorblindcheck)) does this. 
 
 [Example 1](#exm-palette-comparison) shows the results. The Okabe-Ito palette ([Okabe and Ito 2008](#ref-okabe2008)) stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The `khroma` package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its `muted` scheme has at most 9 colors.
 
-## 2 What to do with many groups
+## 0.2 What to do with many groups
 
 With 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.
 
 The `rcartocolor` package’s `Safe` palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The [`fxtas` package](https://github.com/ucdavis/fxtas) uses it for its biomarker groups.
 
-Back to top
-
-## References
+# References
 
 Nowosad, Jakub. 2025. *Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency*. <https://CRAN.R-project.org/package=colorblindcheck>.
 
 Okabe, Masataka, and Kei Ito. 2008. *Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People*. <https://jfly.uni-koeln.de/color/>.
+
+Back to top

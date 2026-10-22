@@ -340,10 +340,10 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-10-22 15:42:28 (PDT)</p>
+  <p class="date">Last modified: 2026-10-22 15:55:46 (PDT)</p>
 </section>
-<section id="why-test-a-palette" class="slide level2" data-number="1">
-<h2><span class="header-section-number">1</span> Why test a palette</h2>
+<section id="why-test-a-palette" class="slide level2" data-number="0.1">
+<h2><span class="header-section-number">0.1</span> Why test a palette</h2>
 </section>
 <section class="slide level2">
 
@@ -479,13 +479,29 @@ Table&nbsp;1: Smallest distance between two colors under simulated color vision 
 </div>
 <p><a href="#/exm-palette-comparison" class="quarto-xref">Example&nbsp;1</a> shows the results. The Okabe-Ito palette <span class="citation" data-cites="okabe2008">(<a href="#/references" role="doc-biblioref" onclick="">Okabe and Ito 2008</a>)</span> stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The <code>khroma</code> package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its <code>muted</code> scheme has at most 9 colors.</p>
 </section>
-<section id="what-to-do-with-many-groups" class="slide level2" data-number="2">
-<h2><span class="header-section-number">2</span> What to do with many groups</h2>
+<section id="what-to-do-with-many-groups" class="slide level2" data-number="0.2">
+<h2><span class="header-section-number">0.2</span> What to do with many groups</h2>
 </section>
-<section class="slide level2 smaller scrollable" id="references">
+<section class="slide level2">
 
 <p>With 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.</p>
 <p>The <code>rcartocolor</code> package’s <code>Safe</code> palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The <a href="https://github.com/ucdavis/fxtas"><code>fxtas</code> package</a> uses it for its biomarker groups.</p>
+</section>
+<section>
+<section id="references" class="title-slide slide level1 unnumbered center">
+<h1>References</h1>
+
+</section>
+<section class="slide level2 smaller scrollable" id="references">
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-colorblindcheck" class="csl-entry" role="listitem">
+Nowosad, Jakub. 2025. <em>Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency</em>. <a href="https://CRAN.R-project.org/package=colorblindcheck">https://CRAN.R-project.org/package=colorblindcheck</a>.
+</div>
+<div id="ref-okabe2008" class="csl-entry" role="listitem">
+Okabe, Masataka, and Kei Ito. 2008. <em>Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People</em>. <a href="https://jfly.uni-koeln.de/color/">https://jfly.uni-koeln.de/color/</a>.
+</div>
+</div>
 
 
 <script>
@@ -678,15 +694,7 @@ window.addEventListener("load", alignEquationAnchorsWithDefault);
 })();
 </script>
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-colorblindcheck" class="csl-entry" role="listitem">
-Nowosad, Jakub. 2025. <em>Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency</em>. <a href="https://CRAN.R-project.org/package=colorblindcheck">https://CRAN.R-project.org/package=colorblindcheck</a>.
-</div>
-<div id="ref-okabe2008" class="csl-entry" role="listitem">
-Okabe, Masataka, and Kei Ito. 2008. <em>Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People</em>. <a href="https://jfly.uni-koeln.de/color/">https://jfly.uni-koeln.de/color/</a>.
-</div>
-</div>
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

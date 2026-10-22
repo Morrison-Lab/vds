@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Visualization Notes",
     "section": "",
-    "text": "These notes cover how to visualize data. Each page works through one plot, with R and Python code side by side. The code runs when the site is built, so every figure comes from the data shown.\n\n\n\nPlotting a Binary Outcome: a rug and two histograms for a 0/1 outcome and a continuous feature.\n\n\n\n\nEach page is available in these formats:\n\nan HTML web page;\nRevealJS slides, at the same address with -slides added to the page name;\na PDF handout and a Word document.",
+    "text": "These notes cover how to visualize data. Each page works through one plot, with R and Python code side by side. The code runs when the site is built, so every figure comes from the data shown.\n\n\n\nPlotting a Binary Outcome: a rug and two histograms for a 0/1 outcome and a continuous feature.\nChoosing Colors: how far apart a palette’s closest two colors are under simulated color vision deficiency.\n\n\n\n\nEach page is available in these formats:\n\nan HTML web page;\nRevealJS slides, at the same address with -slides added to the page name;\na PDF handout and a Word document.",
     "crumbs": [
       "Home"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#pages",
     "title": "Visualization Notes",
     "section": "",
-    "text": "Plotting a Binary Outcome: a rug and two histograms for a 0/1 outcome and a continuous feature.",
+    "text": "Plotting a Binary Outcome: a rug and two histograms for a 0/1 outcome and a continuous feature.\nChoosing Colors: how far apart a palette’s closest two colors are under simulated color vision deficiency.",
     "crumbs": [
       "Home"
     ]
@@ -130,22 +130,22 @@
     "objectID": "chapters/colors-slides.html#why-test-a-palette",
     "href": "chapters/colors-slides.html#why-test-a-palette",
     "title": "Choosing Colors",
-    "section": "1 Why test a palette",
-    "text": "1 Why test a palette"
+    "section": "0.1 Why test a palette",
+    "text": "0.1 Why test a palette"
   },
   {
     "objectID": "chapters/colors-slides.html#what-to-do-with-many-groups",
     "href": "chapters/colors-slides.html#what-to-do-with-many-groups",
     "title": "Choosing Colors",
-    "section": "2 What to do with many groups",
-    "text": "2 What to do with many groups"
+    "section": "0.2 What to do with many groups",
+    "text": "0.2 What to do with many groups"
   },
   {
     "objectID": "chapters/colors-slides.html#references",
     "href": "chapters/colors-slides.html#references",
     "title": "Choosing Colors",
     "section": "",
-    "text": "With 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.\nThe rcartocolor package’s Safe palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The fxtas package uses it for its biomarker groups.\n\n\n\n\n\n\n\n\nNowosad, Jakub. 2025. Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency. https://CRAN.R-project.org/package=colorblindcheck.\n\n\nOkabe, Masataka, and Kei Ito. 2008. Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People. https://jfly.uni-koeln.de/color/."
+    "text": "Nowosad, Jakub. 2025. Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency. https://CRAN.R-project.org/package=colorblindcheck.\n\n\nOkabe, Masataka, and Kei Ito. 2008. Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People. https://jfly.uni-koeln.de/color/."
   },
   {
     "objectID": "chapters/colors.html",
@@ -175,8 +175,8 @@
     "objectID": "chapters/colors.html#what-to-do-with-many-groups",
     "href": "chapters/colors.html#what-to-do-with-many-groups",
     "title": "Choosing Colors",
-    "section": "2 What to do with many groups",
-    "text": "2 What to do with many groups\nWith 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.\nThe rcartocolor package’s Safe palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The fxtas package uses it for its biomarker groups.",
+    "section": "0.2 What to do with many groups",
+    "text": "0.2 What to do with many groups\nWith 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.\nThe rcartocolor package’s Safe palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The fxtas package uses it for its biomarker groups.",
     "crumbs": [
       "Home",
       "Chapters",

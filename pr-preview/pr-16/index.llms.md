@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-22 15:42:28 (PDT)
+Last modified: 2026-10-22 15:55:46 (PDT)
 
 # Welcome
 
@@ -13,6 +13,7 @@ These notes cover how to visualize data. Each page works through one plot, with 
 ## 0.1 Pages
 
 - [Plotting a Binary Outcome](chapters/binary-outcomes.llms.md): a rug and two histograms for a 0/1 outcome and a continuous feature.
+- [Choosing Colors](chapters/colors.llms.md): how far apart a palette’s closest two colors are under simulated color vision deficiency.
 
 ## 0.2 Formats
 
