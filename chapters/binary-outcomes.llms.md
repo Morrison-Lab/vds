@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-22 16:10:14 (PDT)
+Last modified: 2026-10-22 16:14:37 (PDT)
 
 ## 0.1 Why a scatterplot fails
 

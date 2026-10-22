@@ -6,3 +6,4 @@
 
 - [Visualization Notes](https://morrison-lab.github.io/vds/index.llms.md)
 - [Plotting a Binary Outcome](https://morrison-lab.github.io/vds/chapters/binary-outcomes.llms.md)
+- [Choosing Colors](https://morrison-lab.github.io/vds/chapters/colors.llms.md)
