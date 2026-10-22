@@ -30,6 +30,14 @@ jobs:
         any::readr
         any::ggplot2
         any::reticulate
+        any::dplyr
+        any::tidyr
+        any::colorblindcheck
+        any::ggokabeito
+        any::RColorBrewer
+        any::khroma
+        any::viridisLite
+        any::rcartocolor
       # This repo has a DESCRIPTION for lintr and tooling, but pages do not
       # call its functions, and the old workflow never installed it.
       install-package: false

@@ -30,6 +30,14 @@ jobs:
         any::readr
         any::ggplot2
         any::reticulate
+        any::dplyr
+        any::tidyr
+        any::colorblindcheck
+        any::ggokabeito
+        any::RColorBrewer
+        any::khroma
+        any::viridisLite
+        any::rcartocolor
       tinytex: true
       # One bare `quarto render` of every declared format, as before.
       formats: ''
