@@ -4,7 +4,7 @@ Code
 
 Published
 
-Last modified: 2026-10-28 16:01:53 (PDT)
+Last modified: 2026-11-04 23:18:48 (PST)
 
 ## 0.1 Why a scatterplot fails
 
@@ -34,7 +34,7 @@ fitted_bmi = intercept + slope * wcgs["bmi"]
 
 > **NOTE:**
 >
-> **Example 1 (A rug of the WCGS outcome)** A rug draws one tick per observation along an axis. Draw the men with `chd` \\= 0\\ along the bottom edge and the men with `chd` \\= 1\\ along the top edge. Transparent ticks darken where many observations share nearly the same `bmi`.
+> **Example 1 (A rug of the WCGS outcome)** A rug draws one tick per observation along an axis. Draw the men with `chd` $= 0$ along the bottom edge and the men with `chd` $= 1$ along the top edge. Transparent ticks darken where many observations share nearly the same `bmi`.
 >
 > ## R
 >
@@ -77,7 +77,7 @@ fitted_bmi = intercept + slope * wcgs["bmi"]
 
 > **NOTE:**
 >
-> **Example 2 (Two histograms of the WCGS feature)** A histogram of `bmi` for the men with `chd` \\= 0\\ stands on the line \\y = 0\\. A histogram for the men with `chd` \\= 1\\ hangs down from the line \\y = 1\\. Each histogram is scaled so its tallest bar is \\0.3\\ high, because there are far fewer cases than non-cases and the raw counts would hide the smaller group. The heights then show each group’s shape, not how many men it holds.
+> **Example 2 (Two histograms of the WCGS feature)** A histogram of `bmi` for the men with `chd` $= 0$ stands on the line $y = 0$. A histogram for the men with `chd` $= 1$ hangs down from the line $y = 1$. Each histogram is scaled so its tallest bar is $0.3$ high, because there are far fewer cases than non-cases and the raw counts would hide the smaller group. The heights then show each group’s shape, not how many men it holds.
 >
 > ## R
 >
