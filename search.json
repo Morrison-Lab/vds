@@ -1,0 +1,186 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Visualization Notes",
+    "section": "",
+    "text": "These notes cover how to visualize data. Each page works through one plot, with R and Python code side by side. The code runs when the site is built, so every figure comes from the data shown.\n\n\n\nPlotting a Binary Outcome: a rug and two histograms for a 0/1 outcome and a continuous feature.\nChoosing Colors: how far apart a palette’s closest two colors are under simulated color vision deficiency.\n\n\n\n\nEach page is available in these formats:\n\nan HTML web page;\nRevealJS slides, at the same address with -slides added to the page name;\na PDF handout and a Word document.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#pages",
+    "href": "index.html#pages",
+    "title": "Visualization Notes",
+    "section": "",
+    "text": "Plotting a Binary Outcome: a rug and two histograms for a 0/1 outcome and a continuous feature.\nChoosing Colors: how far apart a palette’s closest two colors are under simulated color vision deficiency.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#formats",
+    "href": "index.html#formats",
+    "title": "Visualization Notes",
+    "section": "",
+    "text": "Each page is available in these formats:\n\nan HTML web page;\nRevealJS slides, at the same address with -slides added to the page name;\na PDF handout and a Word document.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index-slides.html#pages",
+    "href": "index-slides.html#pages",
+    "title": "Visualization Notes",
+    "section": "0.1 Pages",
+    "text": "0.1 Pages"
+  },
+  {
+    "objectID": "index-slides.html#formats",
+    "href": "index-slides.html#formats",
+    "title": "Visualization Notes",
+    "section": "0.2 Formats",
+    "text": "0.2 Formats"
+  },
+  {
+    "objectID": "index-slides.html#references",
+    "href": "index-slides.html#references",
+    "title": "Visualization Notes",
+    "section": "References",
+    "text": "References"
+  },
+  {
+    "objectID": "chapters/binary-outcomes.html",
+    "href": "chapters/binary-outcomes.html",
+    "title": "Plotting a Binary Outcome",
+    "section": "",
+    "text": "An outcome that takes only the values 0 and 1 puts every point of a scatterplot on one of two horizontal stripes. Dots on the same stripe overlap wherever the feature takes similar values, so the plot hides how many observations there are. Two plots avoid this: a rug and a pair of histograms.\nThe examples use the Western Collaborative Group Study, which followed 3154 middle-aged men for coronary heart disease (Rosenman et al. 1975). In data/wcgs.csv, the outcome chd is 1 for a man with an incident case and 0 for a man without one. The feature is his body mass index, bmi. Each plot also shows the line fitted to chd by least squares on bmi.\n\nRPython\n\n\n\nwcgs &lt;- readr::read_csv(\"data/wcgs.csv\", show_col_types = FALSE)\nfit_bmi &lt;- lm(chd ~ bmi, data = wcgs)\n\n\n\n\nimport numpy as np\nimport pandas as pd\n\nwcgs = pd.read_csv(\"data/wcgs.csv\")\nslope, intercept = np.polyfit(wcgs[\"bmi\"], wcgs[\"chd\"], 1)\nfitted_bmi = intercept + slope * wcgs[\"bmi\"]",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Plotting a Binary Outcome"
+    ]
+  },
+  {
+    "objectID": "chapters/binary-outcomes.html#why-a-scatterplot-fails",
+    "href": "chapters/binary-outcomes.html#why-a-scatterplot-fails",
+    "title": "Plotting a Binary Outcome",
+    "section": "",
+    "text": "An outcome that takes only the values 0 and 1 puts every point of a scatterplot on one of two horizontal stripes. Dots on the same stripe overlap wherever the feature takes similar values, so the plot hides how many observations there are. Two plots avoid this: a rug and a pair of histograms.\nThe examples use the Western Collaborative Group Study, which followed 3154 middle-aged men for coronary heart disease (Rosenman et al. 1975). In data/wcgs.csv, the outcome chd is 1 for a man with an incident case and 0 for a man without one. The feature is his body mass index, bmi. Each plot also shows the line fitted to chd by least squares on bmi.\n\nRPython\n\n\n\nwcgs &lt;- readr::read_csv(\"data/wcgs.csv\", show_col_types = FALSE)\nfit_bmi &lt;- lm(chd ~ bmi, data = wcgs)\n\n\n\n\nimport numpy as np\nimport pandas as pd\n\nwcgs = pd.read_csv(\"data/wcgs.csv\")\nslope, intercept = np.polyfit(wcgs[\"bmi\"], wcgs[\"chd\"], 1)\nfitted_bmi = intercept + slope * wcgs[\"bmi\"]",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Plotting a Binary Outcome"
+    ]
+  },
+  {
+    "objectID": "chapters/binary-outcomes.html#a-rug",
+    "href": "chapters/binary-outcomes.html#a-rug",
+    "title": "Plotting a Binary Outcome",
+    "section": "0.2 A rug",
+    "text": "0.2 A rug\n\n\n\n\n\n\n\nExample 1 (A rug of the WCGS outcome) A rug draws one tick per observation along an axis. Draw the men with chd \\(= 0\\) along the bottom edge and the men with chd \\(= 1\\) along the top edge. Transparent ticks darken where many observations share nearly the same bmi.\n\nRPython\n\n\n\nlibrary(ggplot2)\nggplot(wcgs, aes(bmi, chd)) +\n  geom_rug(data = subset(wcgs, chd == 0), sides = \"b\", alpha = 0.3) +\n  geom_rug(data = subset(wcgs, chd == 1), sides = \"t\", alpha = 0.3) +\n  geom_hline(yintercept = c(0, 1), linetype = \"dashed\") +\n  geom_line(aes(y = fitted(fit_bmi))) +\n  labs(x = \"Body mass index (bmi)\", y = \"Fitted chd\")\n\n\n\nFitted line of chd on bmi in the WCGS data, with a rug of the men with chd = 1 along the top and chd = 0 along the bottom.\n\n\n\n\n\n\n\n\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots()\nfor chd, side in [(0, 0.0), (1, 1.0)]:\n    bmi_chd = wcgs.loc[wcgs[\"chd\"] == chd, \"bmi\"]\n    ax.plot(bmi_chd, [side] * len(bmi_chd), \"|\", color=\"gray\", alpha=0.3)\nax.axhline(0, linestyle=\"--\", color=\"black\")\nax.axhline(1, linestyle=\"--\", color=\"black\")\nax.plot(wcgs[\"bmi\"], fitted_bmi)\nax.set_xlabel(\"Body mass index (bmi)\")\nax.set_ylabel(\"Fitted chd\")\nplt.show()\n\n\n\nFitted line of chd on bmi in the WCGS data, with a rug of the men with chd = 1 along the top and chd = 0 along the bottom.",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Plotting a Binary Outcome"
+    ]
+  },
+  {
+    "objectID": "chapters/binary-outcomes.html#two-histograms",
+    "href": "chapters/binary-outcomes.html#two-histograms",
+    "title": "Plotting a Binary Outcome",
+    "section": "0.3 Two histograms",
+    "text": "0.3 Two histograms\n\n\n\n\n\n\n\nExample 2 (Two histograms of the WCGS feature) A histogram of bmi for the men with chd \\(= 0\\) stands on the line \\(y = 0\\). A histogram for the men with chd \\(= 1\\) hangs down from the line \\(y = 1\\). Each histogram is scaled so its tallest bar is \\(0.3\\) high, because there are far fewer cases than non-cases and the raw counts would hide the smaller group. The heights then show each group’s shape, not how many men it holds.\n\nRPython\n\n\n\nbreaks &lt;- seq(floor(min(wcgs$bmi)), ceiling(max(wcgs$bmi)), by = 1)\nbars &lt;- function(data, chd_value) {\n  counts &lt;- hist(data$bmi[data$chd == chd_value], breaks = breaks,\n                 plot = FALSE)$counts\n  tibble::tibble(xmin = head(breaks, -1), xmax = tail(breaks, -1),\n                 height = 0.3 * counts / max(counts))\n}\nbars0 &lt;- bars(wcgs, 0)\nbars1 &lt;- bars(wcgs, 1)\nggplot(wcgs, aes(bmi, chd)) +\n  geom_rect(data = bars0,\n            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = height),\n            inherit.aes = FALSE, alpha = 0.4) +\n  geom_rect(data = bars1,\n            aes(xmin = xmin, xmax = xmax, ymin = 1 - height, ymax = 1),\n            inherit.aes = FALSE, alpha = 0.4) +\n  geom_line(aes(y = fitted(fit_bmi))) +\n  labs(x = \"Body mass index (bmi)\", y = \"Fitted chd\")\n\n\n\nThe same line, with a histogram of bmi for the men with chd = 0 standing on the line y = 0 and one for the men with chd = 1 hanging from the line y = 1. Each histogram is scaled so its tallest bar is 0.3 high.\n\n\n\n\n\n\n\n\nbreaks = np.arange(np.floor(wcgs[\"bmi\"].min()), np.ceil(wcgs[\"bmi\"].max()) + 1)\n\nfig, ax = plt.subplots()\nfor chd, base, sign in [(0, 0.0, 1), (1, 1.0, -1)]:\n    counts, _ = np.histogram(wcgs.loc[wcgs[\"chd\"] == chd, \"bmi\"], bins=breaks)\n    ax.bar(breaks[:-1], sign * 0.3 * counts / counts.max(), width=1,\n           bottom=base, align=\"edge\", alpha=0.4)\n#&gt; &lt;BarContainer object of 28 artists&gt;\n#&gt; &lt;BarContainer object of 28 artists&gt;\nax.plot(wcgs[\"bmi\"], fitted_bmi)\n#&gt; [&lt;matplotlib.lines.Line2D object at 0x7f77f809e210&gt;]\nax.set_xlabel(\"Body mass index (bmi)\")\n#&gt; Text(0.5, 0, 'Body mass index (bmi)')\nax.set_ylabel(\"Fitted chd\")\n#&gt; Text(0, 0.5, 'Fitted chd')\nplt.show()\n\n\n\nThe same line, with a histogram of bmi for the men with chd = 0 standing on the line y = 0 and one for the men with chd = 1 hanging from the line y = 1. Each histogram is scaled so its tallest bar is 0.3 high.",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Plotting a Binary Outcome"
+    ]
+  },
+  {
+    "objectID": "chapters/binary-outcomes-slides.html#why-a-scatterplot-fails",
+    "href": "chapters/binary-outcomes-slides.html#why-a-scatterplot-fails",
+    "title": "Plotting a Binary Outcome",
+    "section": "0.1 Why a scatterplot fails",
+    "text": "0.1 Why a scatterplot fails"
+  },
+  {
+    "objectID": "chapters/binary-outcomes-slides.html#a-rug",
+    "href": "chapters/binary-outcomes-slides.html#a-rug",
+    "title": "Plotting a Binary Outcome",
+    "section": "0.2 A rug",
+    "text": "0.2 A rug"
+  },
+  {
+    "objectID": "chapters/binary-outcomes-slides.html#two-histograms",
+    "href": "chapters/binary-outcomes-slides.html#two-histograms",
+    "title": "Plotting a Binary Outcome",
+    "section": "0.3 Two histograms",
+    "text": "0.3 Two histograms"
+  },
+  {
+    "objectID": "chapters/binary-outcomes-slides.html#references",
+    "href": "chapters/binary-outcomes-slides.html#references",
+    "title": "Plotting a Binary Outcome",
+    "section": "",
+    "text": "Rosenman, Ray H, Richard J Brand, C David Jenkins, Meyer Friedman, Reuben Straus, and Moses Wurm. 1975. “Coronary Heart Disease in the Western Collaborative Group Study: Final Follow-up Experience of 8 1/2 Years.” JAMA 233 (8): 872–77. https://doi.org/10.1001/jama.1975.03260080034016."
+  },
+  {
+    "objectID": "chapters/colors-slides.html#why-test-a-palette",
+    "href": "chapters/colors-slides.html#why-test-a-palette",
+    "title": "Choosing Colors",
+    "section": "0.1 Why test a palette",
+    "text": "0.1 Why test a palette"
+  },
+  {
+    "objectID": "chapters/colors-slides.html#what-to-do-with-many-groups",
+    "href": "chapters/colors-slides.html#what-to-do-with-many-groups",
+    "title": "Choosing Colors",
+    "section": "0.2 What to do with many groups",
+    "text": "0.2 What to do with many groups"
+  },
+  {
+    "objectID": "chapters/colors-slides.html#references",
+    "href": "chapters/colors-slides.html#references",
+    "title": "Choosing Colors",
+    "section": "",
+    "text": "Nowosad, Jakub. 2025. Colorblindcheck: Check Color Palettes for Problems with Color Vision Deficiency. https://CRAN.R-project.org/package=colorblindcheck.\n\n\nOkabe, Masataka, and Kei Ito. 2008. Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People. https://jfly.uni-koeln.de/color/."
+  },
+  {
+    "objectID": "chapters/colors.html",
+    "href": "chapters/colors.html",
+    "title": "Choosing Colors",
+    "section": "",
+    "text": "A palette that looks distinct to you can merge for readers with a color vision deficiency. Instead of judging by eye, simulate the common kinds of color vision deficiency and measure how far apart the closest two colors get.\nThe colorblindcheck package (Nowosad 2025) does this. Its palette_check() function returns the smallest distance between two colors of a palette, under normal vision and under each simulated deficiency. As a rule of thumb, a smallest distance of about 10 or more means every pair is easy to tell apart. This chapter uses that rule of thumb as its cutoff; the package does not define one. Below the cutoff, some pair is hard to tell apart for some readers.\n\n\n\n\n\n\n\nExample 1 (Comparing qualitative palettes) This example computes, for each palette and number of groups, the smallest distance between two colors under the worst of the three simulated deficiencies (deuteranopia, protanopia and tritanopia). A dash marks a palette that has fewer colors than groups.\n\n\nShow R code\noptions(knitr.kable.NA = \"-\")\n\n# order puts blue and vermillion first and leaves out black and grey\nokabe_ito_order &lt;- c(5, 6, 3, 7, 2, 1, 4)\nbrewer &lt;- function(name) {\n  function(n) RColorBrewer::brewer.pal(max(n, 3), name)[seq_len(n)]\n}\npalettes &lt;- list(\n  \"Okabe-Ito (ggokabeito)\" = function(n) {\n    ggokabeito::palette_okabe_ito(order = okabe_ito_order)[seq_len(n)]\n  },\n  \"RColorBrewer Dark2\" = brewer(\"Dark2\"),\n  \"RColorBrewer Set2\" = brewer(\"Set2\"),\n  \"RColorBrewer Paired\" = brewer(\"Paired\"),\n  \"khroma muted\" = function(n) unname(khroma::color(\"muted\")(n)),\n  \"viridis\" = function(n) viridisLite::viridis(n),\n  \"rcartocolor Safe\" = function(n) rcartocolor::carto_pal(n, \"Safe\")\n)\n\nworst_case_distance &lt;- function(make_palette, n) {\n  colors &lt;- tryCatch(\n    make_palette(n),\n    error = function(e) NULL,\n    warning = function(w) NULL\n  )\n  if (is.null(colors) || length(colors) &lt; n || anyNA(colors)) {\n    return(NA_real_)\n  }\n  # viridis adds an alpha channel; palette_check() wants plain \"#rrggbb\"\n  colors &lt;- substr(as.character(colors), 1, 7)\n  # the first row is normal vision; the rest are the simulated deficiencies\n  min(colorblindcheck::palette_check(colors)$min_dist[-1])\n}\n\nexpand.grid(palette = names(palettes), groups = c(3, 5, 7, 10)) |&gt;\n  tibble::as_tibble() |&gt;\n  dplyr::rowwise() |&gt;\n  dplyr::mutate(\n    distance = worst_case_distance(palettes[[as.character(palette)]], groups)\n  ) |&gt;\n  dplyr::ungroup() |&gt;\n  tidyr::pivot_wider(\n    names_from = groups,\n    values_from = distance,\n    names_prefix = \"n = \"\n  ) |&gt;\n  knitr::kable(digits = 1)\n\n\n\n\nTable 1: Smallest distance between two colors under simulated color vision deficiency, by palette and number of groups. Higher is better; about 10 or more is easy to tell apart.\n\n\n\n\n\n\npalette\nn = 3\nn = 5\nn = 7\nn = 10\n\n\n\n\nOkabe-Ito (ggokabeito)\n12.1\n12.1\n11.1\n-\n\n\nRColorBrewer Dark2\n18.8\n3.4\n2.3\n-\n\n\nRColorBrewer Set2\n12.9\n1.6\n1.6\n-\n\n\nRColorBrewer Paired\n8.2\n8.2\n4.7\n1.3\n\n\nkhroma muted\n22.6\n17.7\n11.8\n-\n\n\nviridis\n31.6\n13.7\n6.8\n3.9\n\n\nrcartocolor Safe\n5.8\n5.8\n5.8\n5.3\n\n\n\n\n\n\n\n\n\n\n\n\nExample 1 shows the results. The Okabe-Ito palette (Okabe and Ito 2008) stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The khroma package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its muted scheme has at most 9 colors.",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Choosing Colors"
+    ]
+  },
+  {
+    "objectID": "chapters/colors.html#why-test-a-palette",
+    "href": "chapters/colors.html#why-test-a-palette",
+    "title": "Choosing Colors",
+    "section": "",
+    "text": "A palette that looks distinct to you can merge for readers with a color vision deficiency. Instead of judging by eye, simulate the common kinds of color vision deficiency and measure how far apart the closest two colors get.\nThe colorblindcheck package (Nowosad 2025) does this. Its palette_check() function returns the smallest distance between two colors of a palette, under normal vision and under each simulated deficiency. As a rule of thumb, a smallest distance of about 10 or more means every pair is easy to tell apart. This chapter uses that rule of thumb as its cutoff; the package does not define one. Below the cutoff, some pair is hard to tell apart for some readers.\n\n\n\n\n\n\n\nExample 1 (Comparing qualitative palettes) This example computes, for each palette and number of groups, the smallest distance between two colors under the worst of the three simulated deficiencies (deuteranopia, protanopia and tritanopia). A dash marks a palette that has fewer colors than groups.\n\n\nShow R code\noptions(knitr.kable.NA = \"-\")\n\n# order puts blue and vermillion first and leaves out black and grey\nokabe_ito_order &lt;- c(5, 6, 3, 7, 2, 1, 4)\nbrewer &lt;- function(name) {\n  function(n) RColorBrewer::brewer.pal(max(n, 3), name)[seq_len(n)]\n}\npalettes &lt;- list(\n  \"Okabe-Ito (ggokabeito)\" = function(n) {\n    ggokabeito::palette_okabe_ito(order = okabe_ito_order)[seq_len(n)]\n  },\n  \"RColorBrewer Dark2\" = brewer(\"Dark2\"),\n  \"RColorBrewer Set2\" = brewer(\"Set2\"),\n  \"RColorBrewer Paired\" = brewer(\"Paired\"),\n  \"khroma muted\" = function(n) unname(khroma::color(\"muted\")(n)),\n  \"viridis\" = function(n) viridisLite::viridis(n),\n  \"rcartocolor Safe\" = function(n) rcartocolor::carto_pal(n, \"Safe\")\n)\n\nworst_case_distance &lt;- function(make_palette, n) {\n  colors &lt;- tryCatch(\n    make_palette(n),\n    error = function(e) NULL,\n    warning = function(w) NULL\n  )\n  if (is.null(colors) || length(colors) &lt; n || anyNA(colors)) {\n    return(NA_real_)\n  }\n  # viridis adds an alpha channel; palette_check() wants plain \"#rrggbb\"\n  colors &lt;- substr(as.character(colors), 1, 7)\n  # the first row is normal vision; the rest are the simulated deficiencies\n  min(colorblindcheck::palette_check(colors)$min_dist[-1])\n}\n\nexpand.grid(palette = names(palettes), groups = c(3, 5, 7, 10)) |&gt;\n  tibble::as_tibble() |&gt;\n  dplyr::rowwise() |&gt;\n  dplyr::mutate(\n    distance = worst_case_distance(palettes[[as.character(palette)]], groups)\n  ) |&gt;\n  dplyr::ungroup() |&gt;\n  tidyr::pivot_wider(\n    names_from = groups,\n    values_from = distance,\n    names_prefix = \"n = \"\n  ) |&gt;\n  knitr::kable(digits = 1)\n\n\n\n\nTable 1: Smallest distance between two colors under simulated color vision deficiency, by palette and number of groups. Higher is better; about 10 or more is easy to tell apart.\n\n\n\n\n\n\npalette\nn = 3\nn = 5\nn = 7\nn = 10\n\n\n\n\nOkabe-Ito (ggokabeito)\n12.1\n12.1\n11.1\n-\n\n\nRColorBrewer Dark2\n18.8\n3.4\n2.3\n-\n\n\nRColorBrewer Set2\n12.9\n1.6\n1.6\n-\n\n\nRColorBrewer Paired\n8.2\n8.2\n4.7\n1.3\n\n\nkhroma muted\n22.6\n17.7\n11.8\n-\n\n\nviridis\n31.6\n13.7\n6.8\n3.9\n\n\nrcartocolor Safe\n5.8\n5.8\n5.8\n5.3\n\n\n\n\n\n\n\n\n\n\n\n\nExample 1 shows the results. The Okabe-Ito palette (Okabe and Ito 2008) stays above 10 for all 7 of its colors, and with 10 groups no palette tested reaches 10. The RColorBrewer qualitative palettes Dark2 and Set2 are fine for 3 groups and then lose distinctness quickly. The viridis palette scores well for 3 and 5 groups, but it is a sequential palette, so its neighboring colors look alike when the groups have no order. The khroma package’s Okabe-Ito scheme starts with black, so it is not comparable here. Its muted scheme has at most 9 colors.",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Choosing Colors"
+    ]
+  },
+  {
+    "objectID": "chapters/colors.html#what-to-do-with-many-groups",
+    "href": "chapters/colors.html#what-to-do-with-many-groups",
+    "title": "Choosing Colors",
+    "section": "0.2 What to do with many groups",
+    "text": "0.2 What to do with many groups\nWith 10 groups, no tested palette keeps every pair easy to tell apart, and the table does not test 8 or 9 groups. Pair color with shape or line type, so that color is never the only way to tell groups apart. Better still, show fewer groups: combine small groups, or split the figure into panels.\nThe rcartocolor package’s Safe palette gives up to 12 colors, so it is the fallback when a figure needs more than 7 groups. Its smallest distance is about 5 to 6 at every size in the table, which is below the cutoff, so it is a fallback and not a recommendation. The fxtas package uses it for its biomarker groups.",
+    "crumbs": [
+      "Home",
+      "Chapters",
+      "Choosing Colors"
+    ]
+  }
+]
